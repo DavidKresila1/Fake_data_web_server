@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake REST API data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <center><h1>Fake REST API data server</h1></center>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/demo">Demo</a></li>
+        <li><a href="/users">User data</a></li>
+        <li><a href="/posts">Post data</a></li>
+    </ul>
+
+    <center><h2>JSON Data</h2></center>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.userid }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer>Made by <a href="https://davidkresila.pythonanywhere.com/">Dávid Krešila</a></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Data Display</title>
+</head>
+<body>
+    <h1>JSON Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Userd</th>
+                <th>Post</th>
+                <th>PostID</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.userid }}</td>
+                    <td>{{ item.post }}</td>
+                    <td>{{ item.postid }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

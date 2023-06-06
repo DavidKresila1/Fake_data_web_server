@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake REST API data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <center><h1>Fake REST API data server</h1></center>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/demo">Demo</a></li>
+        <li><a href="/users">User data</a></li>
+        <li><a href="/posts">Post data</a></li>
+    </ul>
+    <center><h2>Demo</h2></center>
+    <center><h3>This is how to get data in flask!</h3></center>
+
+    <div class="code">
+        <pre>
+            <code>
+import requests
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/users/&lt;int:userid&gt;')
+def get_user(userid):
+ip_address = '127.0.0.1:5000'  # Replace with the specific IP address
+url = f'http://{ip_address}/api/users/{userid}'
+
+try:
+    response = requests.get(url)
+    response.raise_for_status()  
+    data = response.json()
+    
+    userID = data['userid']
+    name = data['name']
+    age = data['age']
+    email = data['email']
+    
+    print(f"User ID: {userID}")
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"Email: {email}")
+        
+    return f"User ID: {userID}, Name: {name}, Age: {age}, Email: {email}"
+
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+    return "Error"
+except (ValueError, KeyError) as e:
+    print(f"Invalid JSON data: {e}")
+    return "Invalid JSON data"
+
+if __name__ == '__main__':
+app.run(port=8000)
+            </code>
+        </pre>
+    </div>
+</body>
+</html>

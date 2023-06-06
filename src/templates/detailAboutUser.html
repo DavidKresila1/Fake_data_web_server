@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+</head>
+<body>
+    {% if item %}
+        <h1>Item Details</h1>
+        <p>ID: {{ item.id }}</p>
+        <p>Name: {{ item.name }}</p>
+        <p>Age: {{ item.age }}</p>
+        <p>Email: {{ item.email }}</p>
+    {% else %}
+        <p>No item found with the specified ID.</p>
+    {% endif %}
+</body>
+</html>
